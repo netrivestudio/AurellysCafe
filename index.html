@@ -1,40 +1,73 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1.0" 
+  />
 
   <title>Aurellys Cafe</title>
-<link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#111827">
-  <link rel="stylesheet" href="style.css" />
+  <!-- PWA -->
+
+  <link 
+    rel="manifest" 
+    href="manifest.json" 
+  />
+
+  <meta 
+    name="theme-color" 
+    content="#111827" 
+  />
+
+  <link 
+    rel="apple-touch-icon" 
+    href="images/aurellyslogo.png" 
+  />
+
+  <!-- CSS -->
+
+  <link 
+    rel="stylesheet" 
+    href="style.css" 
+  />
+
 </head>
 
 <body>
 
   <!-- HEADER -->
-<header class="hero">
 
- <img 
-  src="images/aurellyslogo.png" 
-  alt="Aurellys Cafe Logo"
-  class="logo"
-/>
+  <header class="hero">
 
-</header>
+    <img 
+      src="images/aurellyslogo.png" 
+      alt="Aurellys Cafe Logo"
+      class="logo"
+    />
+
+  </header>
 
   <!-- SEARCH -->
+
   <section class="search-section">
+
     <input 
       type="text" 
       id="searchInput"
       placeholder="Cari menu..."
     />
+
   </section>
 
   <!-- CATEGORY -->
+
   <section class="categories">
+
     <button class="category-btn active">
       Semua
     </button>
@@ -50,14 +83,20 @@
     <button class="category-btn">
       Food
     </button>
+
   </section>
 
-  <!-- MENU CONTAINER -->
-  <main class="menu-container" id="menuContainer">
+  <!-- MENU -->
+
+  <main 
+    class="menu-container" 
+    id="menuContainer"
+  >
 
   </main>
 
-  <!-- WHATSAPP FLOAT -->
+  <!-- WHATSAPP -->
+
   <a 
     href="#"
     class="wa-float"
@@ -66,7 +105,30 @@
     Pesan via WhatsApp
   </a>
 
+  <!-- SCRIPT -->
+
   <script src="script.js"></script>
+
+  <!-- PWA REGISTER -->
+
+  <script>
+
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          navigator.serviceWorker.register(
+            "./service-worker.js"
+          );
+
+        }
+      );
+
+    }
+
+  </script>
 
 </body>
 </html>
