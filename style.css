@@ -33,9 +33,13 @@ body {
   font-size: 16px;
 }
 
-.tagline {
-  color: #d1d5db;
-  font-size: 16px;
+.logo {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid #f59e0b;
 }
 
 /* SEARCH */
