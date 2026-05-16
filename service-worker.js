@@ -1,11 +1,15 @@
-const CACHE_NAME = "aurellys-cache-v1";
+const CACHE_NAME =
+  "aurellys-cache-v2";
 
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/manifest.json"
+
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js",
+  "./manifest.json",
+  "./images/aurellyslogo.png"
+
 ];
 
 self.addEventListener(
