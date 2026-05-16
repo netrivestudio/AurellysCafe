@@ -1,4 +1,4 @@
-const menuData = [
+ const menuData = [
   {
     name: "Caramel Latte",
     price: "Rp 28.000",
@@ -7,7 +7,9 @@ const menuData = [
       "https://images.unsplash.com/photo-1517701604599-bb29b565090c",
 
     description:
-      "Espresso creamy dengan caramel premium."
+      "Espresso creamy dengan caramel premium.",
+
+    bestSeller: true
   },
 
   {
@@ -18,7 +20,9 @@ const menuData = [
       "https://images.unsplash.com/photo-1515823064-d6e0c04616a7",
 
     description:
-      "Matcha creamy dengan rasa lembut."
+      "Matcha creamy dengan rasa lembut.",
+
+    bestSeller: false
   },
 
   {
@@ -29,7 +33,9 @@ const menuData = [
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
 
     description:
-      "Burger juicy dengan cheese premium."
+      "Burger juicy dengan cheese premium.",
+
+    bestSeller: true
   }
 ];
 
@@ -43,6 +49,11 @@ const searchInput =
     "searchInput"
   );
 
+const categoryButtons =
+  document.querySelectorAll(
+    ".category-btn"
+  );
+
 function displayMenu(data) {
 
   menuContainer.innerHTML = "";
@@ -54,11 +65,32 @@ function displayMenu(data) {
 
     card.classList.add("menu-card");
 
+    const waMessage =
+      `Halo Aurellys Cafe, saya ingin pesan ${menu.name}`;
+
+    const waLink =
+      `https://wa.me/6281234567890?text=${encodeURIComponent(waMessage)}`;
+
     card.innerHTML = `
-      <img 
-        src="${menu.image}" 
-        class="menu-image"
-      />
+    
+      <div style="position: relative;">
+
+        ${
+          menu.bestSeller
+          ? `
+            <span class="badge">
+              BEST SELLER
+            </span>
+          `
+          : ""
+        }
+
+        <img 
+          src="${menu.image}" 
+          class="menu-image"
+        />
+
+      </div>
 
       <div class="menu-content">
 
@@ -74,6 +106,14 @@ function displayMenu(data) {
           ${menu.description}
         </p>
 
+        <a 
+          href="${waLink}"
+          target="_blank"
+          class="order-btn"
+        >
+          Pesan Sekarang
+        </a>
+
       </div>
     `;
 
@@ -84,6 +124,8 @@ function displayMenu(data) {
 }
 
 displayMenu(menuData);
+
+/* SEARCH */
 
 searchInput.addEventListener(
   "keyup",
@@ -105,3 +147,44 @@ searchInput.addEventListener(
 
   }
 );
+
+/* CATEGORY FILTER */
+
+categoryButtons.forEach((button) => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      categoryButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      const category =
+        button.innerText;
+
+      if (category === "Semua") {
+
+        displayMenu(menuData);
+
+      } else {
+
+        const filteredMenu =
+          menuData.filter((menu) => {
+
+            return (
+              menu.category === category
+            );
+
+          });
+
+        displayMenu(filteredMenu);
+
+      }
+
+    }
+  );
+
+});
